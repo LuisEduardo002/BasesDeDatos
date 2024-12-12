@@ -1,9 +1,12 @@
 package com.example.demo.Auth;
 
+import com.example.demo.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 @Data
 @Builder
@@ -14,5 +17,7 @@ public class RegisterRequest {
   String password;
   String firstName;
   String lastName;
-  String country;
+  String email;
+  BigDecimal saldoVirtual;
+  Role role;
 }

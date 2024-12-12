@@ -16,19 +16,14 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping(value = "login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request)
+    {
         return ResponseEntity.ok(authService.login(request));
     }
 
-
     @PostMapping(value = "register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
-        try {
-            AuthResponse response = authService.register(request);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            e.printStackTrace(); // Registra el error en consola
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar el usuario: " + e.getMessage());
-        }
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request)
+    {
+        return ResponseEntity.ok(authService.register(request));
     }
 }

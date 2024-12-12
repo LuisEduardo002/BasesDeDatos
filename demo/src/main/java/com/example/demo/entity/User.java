@@ -1,4 +1,4 @@
-package com.example.demo.User;
+package com.example.demo.entity;
 
 
 import jakarta.persistence.*;
@@ -10,7 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,14 +22,27 @@ import java.util.List;
 @Table(name="user", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 public class User implements UserDetails{
     @Id
-            @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 @Column(nullable = false)
+
     String username;
+
     String password;
+
+    @Column(nullable = false, length = 255)
     String firstName;
+
+    @Column(nullable = false, length = 255)
     String lastName;
-    String country;
+
+    @Column(nullable = false, unique = true, length = 255)
+    private String email;
+
+    @Column(name = "saldo_virtual", precision = 10, scale = 2, nullable = false)
+    private BigDecimal saldoVirtual = BigDecimal.ZERO;
+
+    @Column(nullable = false)
     Role role;
 
 
